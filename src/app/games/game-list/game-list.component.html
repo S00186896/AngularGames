@@ -1,0 +1,33 @@
+<div style="padding-left: 10rem; padding-right: 10rem;">
+
+<div class="navbar">
+  <button (click)="openAddGame()" *ngIf="!showGameForm"
+  class="btn btn-success"  style="background-color: #23ec8f;">Add Game</button>
+  
+  <button (click)="openEditGame()" *ngIf="!showGameForm" [disabled]="!currentGame"
+  class="btn btn-success " style="background-color: #23ec8f;">Edit Game</button> 
+  
+  <button (click)="openDeleteGame()" *ngIf="!showGameForm" [disabled]="!currentGame"
+  class="btn btn-success" style="background-color: #23ec8f;" >Delete Game</button>
+  </div>
+</div>
+  <div class="container">
+  
+    <app-game-details *ngIf="currentGame" [game]="currentGame">
+    </app-game-details>
+
+    <app-game-form *ngIf="showGameForm" 
+    (gameFormClose)="gameFormClose($event)" [game]="currentGame"></app-game-form> 
+  
+      <!--<p>
+        <ngb-alert *ngIf="message" [dismissible]="true">
+          <strong>Warning!</strong> {{message}}
+        </ngb-alert>
+      </p> -->
+  
+        <app-game-row class="card" style="margin-top: 15px;" *ngFor="let g of gameList"
+        [game]="g"
+        (click)='clicked(g)'
+        [class.bg-success]="isSelected(g)" [class.text-white]="isSelected(g)"></app-game-row>
+  
+      </div>

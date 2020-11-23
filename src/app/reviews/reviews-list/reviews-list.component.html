@@ -1,0 +1,34 @@
+<div style="padding-left: 10rem; padding-right: 10rem;">
+
+    <div class="navbar">
+      <button (click)="openAddReview()" *ngIf="!showReviewForm"
+      class="btn btn-success"  style="background-color: #23ec8f;">Add Review</button>
+      
+      <button (click)="openEditReview()" *ngIf="!showReviewForm" [disabled]="!currentReview"
+      class="btn btn-success " style="background-color: #23ec8f;">Edit Review</button> 
+      
+      <button (click)="openDeleteReview()" *ngIf="!showReviewForm" [disabled]="!currentReview"
+      class="btn btn-success" style="background-color: #23ec8f;" >Delete Review</button>
+    </div>
+</div>
+
+      <div class="container">
+      
+        <app-review-details *ngIf="currentReview" [review]="currentReview">
+        </app-review-details>
+    
+        <app-review-forms *ngIf="showReviewForm" 
+        (reviewFormClose)="reviewFormClose($event)" [review]="currentReview"></app-review-forms> 
+      
+          <!--<p>
+            <ngb-alert *ngIf="message" [dismissible]="true">
+              <strong>Warning!</strong> {{message}}
+            </ngb-alert>
+          </p> -->
+      
+            <app-review-row class="card" style="margin-top: 15px;" *ngFor="let r of reviewList"
+            [review]="r"
+            (click)='clicked(r)'
+            [class.bg-success]="isSelected(r)" [class.text-white]="isSelected(r)"></app-review-row>
+      
+          </div>

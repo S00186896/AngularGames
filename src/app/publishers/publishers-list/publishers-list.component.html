@@ -1,0 +1,32 @@
+<div style="padding-left: 10rem; padding-right: 10rem;">
+  <div class="navbar">
+    <button (click)="openAddPublisher()" *ngIf="!showPublisherForm"
+    class="btn btn-success" style="background-color: #23ec8f;" >Add Publisher</button>
+    
+    <button (click)="openEditPublisher()" *ngIf="!showPublisherForm" [disabled]="!currentPublisher"
+    class="btn btn-success" style="background-color: #23ec8f;" >Edit Publisher</button>
+    
+    <button (click)="openDeletePublisher()" *ngIf="!showPublisherForm" [disabled]="!currentPublisher"
+    class="btn btn-success" style="background-color: #23ec8f;" >Delete Publisher</button>
+  </div>
+</div>
+    <div class="container">
+    
+      <app-publisher-forms *ngIf="showPublisherForm" 
+      (PublisherFormClose)="PublisherFormClose($event)" [Publisher]="currentPublisher"></app-publisher-forms> 
+    
+        <!--<p>
+          <ngb-alert *ngIf="message" [dismissible]="true">
+            <strong>Warning!</strong> {{message}} 
+          </ngb-alert>
+        </p> -->
+    
+          <app-publisher-row class="card" *ngFor="let p of publisherList"
+          [Publisher]="p"
+          (click)='clicked(p)'
+          [class.bg-dark]="isSelected(p)" [class.text-white]="isSelected(p)"></app-publisher-row>
+    
+          <app-publisher-details *ngIf="currentPublisher" [Publisher]="currentPublisher">
+       </app-publisher-details>
+    
+        </div>

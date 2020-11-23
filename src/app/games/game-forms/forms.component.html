@@ -1,0 +1,50 @@
+<button type="button" class="close" aria-label="Close" (click)="closeForm()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+<form [formGroup]="gameForm" (ngSubmit) = "onSubmit()"  >
+<div class="form-group" >
+    <label for="title"> Title</label>
+    <input id="title" type="text" formControlName="title" class="form-control">
+</div>
+<div class="form-group" >
+    <label for="genre"> Genre</label>
+
+    <input id="genre" type="text" formControlName="genre" class="form-control">
+</div>
+<div class="form-group">
+    <label for="platforms"> Platforms</label>
+    <input id="platforms" type="text" formControlName="platforms" class="form-control">
+</div>
+<div class="form-group">
+    <label for="id"> Id</label>
+    <input id="id" type="text" formControlName="id" class="form-control">
+</div>
+<div class="form-group">
+    <label for="imageGame"> Image</label>
+    <input id="imageGame" type="text" formControlName="imageGame" class="form-control">
+</div>
+
+
+
+<button type="submit" [disabled]="!gameForm.valid" class="btn btn-lg btn-success" >Submit</button>
+
+
+
+<div *ngIf="title.invalid && title.touched" class="alert alert-danger" >
+    Title is required and must be at least 4 characters
+</div>
+<div *ngIf="genre.invalid && genre.touched" class="alert alert-danger" >
+    Genre is required
+</div>
+<div *ngIf="platforms.invalid && platforms.touched" class="alert alert-danger" >
+    Platforms is required
+</div>
+<div *ngIf="id.invalid && id.touched" class="alert alert-danger" >
+    ID is required
+</div>
+<div *ngIf="imageGame.invalid && imageGame.touched" class="alert alert-danger" >
+    Image is required
+</div>
+
+</form>

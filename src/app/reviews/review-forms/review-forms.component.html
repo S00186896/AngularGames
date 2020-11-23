@@ -1,0 +1,40 @@
+<button type="button" class="close" aria-label="Close" (click)="closeForm()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+<form [formGroup]="reviewForm" (ngSubmit) = "onSubmit()"  >
+<div class="form-group" >
+    <label for="IGN"> IGN</label>
+    <input id="title" type="text" formControlName="IGN" class="form-control">
+</div>
+<div class="form-group" >
+    <label for="GameSpot"> GameSpot</label>
+
+    <input id="GameSpot" type="text" formControlName="GameSpot" class="form-control">
+</div>
+<div class="form-group">
+    <label for="MetaCritic"> MetaCritic</label>
+    <input id="MetaCritic" type="text" formControlName="MetaCritic" class="form-control">
+</div>
+<div class="form-group">
+    <label for="reviewId"> reviewId</label>
+    <input id="reviewId" type="text" formControlName="reviewId" class="form-control">
+</div>
+
+<button type="submit" [disabled]="!reviewForm.valid" class="btn btn-lg btn-success">Submit</button>
+
+
+<div *ngIf="IGN.invalid && IGN.touched" class="alert alert-danger" >
+    IGN is required and must be at least 4 characters
+</div>
+<div *ngIf="GameSpot.invalid && GameSpot.touched" class="alert alert-danger" >
+    GameSpot is required
+</div>
+<div *ngIf="MetaCritic.invalid && MetaCritic.touched" class="alert alert-danger" >
+    MetaCritic is required
+</div>
+<div *ngIf="reviewId.invalid && reviewId.touched" class="alert alert-danger" >
+    reviewId is required
+</div>
+
+</form>
